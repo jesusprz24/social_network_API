@@ -12,7 +12,7 @@ This social network web app can be used for developers to share their thoughts, 
 
 # Installation
 - Clone the application into the command line or terminal
-- Run the comman `npm i` to install the necessary modules and dependencies
+- Run the command `npm i` to install the necessary modules and dependencies
 - Then run npm start in the command line or terminal
 - To use this application use local server 3001
 
