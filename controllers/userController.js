@@ -28,7 +28,18 @@ const userController = {
             path:'thoughts',
             select: '__v'
         })
-        .selec
-    }
+        .select('__v')
+        .then(dbUserData => {
+            if (dbUserData) {
+                res.status(404).json({ message: 'There is no user with this id'});
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(400).json(err);
+        });
+    },
 
 }
