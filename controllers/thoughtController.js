@@ -44,6 +44,49 @@ const thoughtControllers = {
         .catch((err) => res.status(500).json(err));
     },
 
+// Update thought
+    updateThought(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.courseId },
+            { $set: req.body },
+            { runValidators: true, new: true }
+        )
+        .then((thought) => 
+        !thought
+            ? res.status(404).json({ message: 'There is no thought with this id' })
+            : res.json(course)
+            )
+            .catch((err) => res.status(500).json(err));
+    },
 
+// create a reaction
+    createReaction(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $addToSet: { reactions: req.body }},
+            { runValidators: true, new: true }
+        )
+        .then((thought) => 
+        !thought
+            ? res.status(404).son({ message: 'There is not thought with this id' })
+            : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err));
+    },
 
-}
+// deletes reaction
+    deleteReaction(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $pull: { reactions: { reactionId: req.params.reactionId }}},
+            { runValidators: true, new: true }
+        )
+        .then((thought) =>
+        !thought
+            ? res.status(404).json({ message: 'There is no reaction with this id'})
+        )
+        .catch((err) => res.status(500).json(err));
+    },
+};
+
+module.exports = thoughtControllers;
