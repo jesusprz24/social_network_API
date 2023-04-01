@@ -37,7 +37,7 @@ const thoughtControllers = {
         .then((thought) =>
         !thought
             ? res.status(404).json({ message: 'There is no thought with that ID' })
-            : user.findOneAndUpdate({ userId: req.body.userId}, {$pull: {
+            : User.findOneAndUpdate({ userId: req.body.userId}, {$pull: {
                 thoughts: req.params.thoughtId}}, { new: true })
         )
         .then(() => res.json({ message: 'Thought has been deleted' }))
