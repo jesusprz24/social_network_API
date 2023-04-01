@@ -84,6 +84,7 @@ const thoughtControllers = {
         .then((thought) =>
         !thought
             ? res.status(404).json({ message: 'There is no reaction with this id'})
+            : res.json(thought)
         )
         .catch((err) => res.status(500).json(err));
     },
