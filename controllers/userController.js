@@ -42,4 +42,17 @@ const userController = {
         });
     },
 
+// create a user
+    createUser({ body }, res) {
+        User.create(body)
+        .then(dbUserData => {
+            if(dbUserData) {
+                res.status(404).json({ message: 'There is no user with this id '});
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => res.status(400).json(err));
+    },
+
 }
