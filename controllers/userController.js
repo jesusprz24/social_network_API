@@ -50,7 +50,7 @@ const userController = {
     },
 
 // update a user
-    updateUser({ params, body } res) {
+    updateUser({ params, body }, res) {
         User.fineOneAndUpdate({_id: params.id }, body, { new: true, runValidators: true })
         .then(dbUserData => {
             if (dbUserData) {
