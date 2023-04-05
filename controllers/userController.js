@@ -45,8 +45,15 @@ const userController = {
 // create a user
     createUser({ body }, res) {
         User.create(body)
+        .then(dbUserData => res.json(dbUserData))
+        .catch(err => res.status(400).json(err));
+    },
+
+// update a user
+    updateUser({ params, body } res) {
+        User.fineOneAndUpdate({_id: params.id }, body, { new: true, runValidators: true })
         .then(dbUserData => {
-            if(dbUserData) {
+            if (dbUserData) {
                 res.status(404).json({ message: 'There is no user with this id '});
                 return;
             }
