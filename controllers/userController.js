@@ -75,6 +75,34 @@ deleteUser({ params }, res) {
     .catch(err => res.status(400).json(err));
   },
 
+// add friends
+  addFriend({ params }, res) {
+    User.fineOneAndUpdate(
+        {_id: params.userId },
+        {$push: {friends: params.friendId}},
+        {new: true}
+    )
+    ,then(dbUserData => {
+        if(dbUserData) {
+            res.status(404).json({message: 'There is no user with that id'});
+            return;
+        }
+        res.json(dbUserData)
+    })
+    .catch(err => res.json(err));
+  },
+
+// delete friends
+  deleteFriend({ params }, res) {
+    User.findOneAndDelete(
+        {_id: params.friendId},
+        { $pull: { friends: params.friendId}},
+        { new: true}
+    )
+    .then(dbUserData => res.json(dbUserData))
+    .catch(err => res.json(err));
+  }
+
 };
 
 module.exports = userController;
