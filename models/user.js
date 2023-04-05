@@ -31,6 +31,11 @@ const userSchema = new Schema(
     }
 );
 
+// using a virtual property to define a getter function
+userSchema.virtual('friendcount').get(function () {
+    return this.friends.length;
+})
+
 userSchema.pre('remove', function() {
     Thought.deleteMany({_id: req.params.thoughtId})
     .then(() => User.updateMany({}, {$pull: {thoughts: req.params.userId}}))
