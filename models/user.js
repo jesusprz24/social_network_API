@@ -30,3 +30,13 @@ const userSchema = new Schema(
         id: false,
     }
 );
+
+userSchema.pre('remove', function() {
+    Thought.deleteMany({_id: req.params.thoughtId})
+    .then(() => User.updateMany({}, {$pull: {thoughts: req.params.userId}}))
+    .then(() => res.json({ message: 'User has been deleted'}))
+    .catch(err => res.json(err));
+});
+
+
+module.exports = model('User', userSchema);
