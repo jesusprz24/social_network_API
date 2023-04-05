@@ -54,12 +54,25 @@ const userController = {
         User.fineOneAndUpdate({_id: params.id }, body, { new: true, runValidators: true })
         .then(dbUserData => {
             if (dbUserData) {
-                res.status(404).json({ message: 'There is no user with this id '});
+                res.status(404).json({ message: 'There is no user with this id'});
                 return;
             }
             res.json(dbUserData);
         })
         .catch(err => res.status(400).json(err));
     },
+
+// delete a user
+deleteUser({ params }, res) {
+    User.findOneAndDelete({ _id: params.id })
+      .then(dbUserData => {
+        if (!dbUserData) {
+          res.status(404).json({ message: 'There is no user with this id'});
+          return;
+        }
+        res.json(dbUserData);
+      })
+    .catch(err => res.status(400).json(err));
+  },
 
 }
