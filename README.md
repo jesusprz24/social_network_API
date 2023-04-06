@@ -24,4 +24,3 @@ This social network web app can be used for developers to share their thoughts, 
 - Express.js
 - Node.js
 
-# Walkthrough
