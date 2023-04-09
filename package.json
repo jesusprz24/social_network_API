@@ -3,5 +3,23 @@
     "express": "^4.18.2",
     "mongoose": "^6.0.13",
     "nodemon": "^2.0.21"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "social_network_api",
+  "description": "- Description\r - Acceptance Criteria\r - Installation\r - Languages Used\r - Walkthrough",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesusprz24/social_network_API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jesusprz24/social_network_API/issues"
+  },
+  "homepage": "https://github.com/jesusprz24/social_network_API#readme"
 }
